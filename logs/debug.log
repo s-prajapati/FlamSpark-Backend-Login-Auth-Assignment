@@ -148,3 +148,27 @@
 19:14:57 [32minfo[39m: Server started
 19:14:57 [32minfo[39m: Connected to Database
 19:14:57 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:15:46 [32minfo[39m: Server started
+19:15:46 [32minfo[39m: Connected to Database
+19:15:46 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:22:40 [32minfo[39m: Server started
+19:22:40 [32minfo[39m: Connected to Database
+19:22:40 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:27:50 [32minfo[39m: Server started
+19:27:50 [31merror[39m: Mongoose connection error: MongooseServerSelectionError: connection timed out
+19:27:50 [32minfo[39m: Error connecting to Database
+19:27:58 [32minfo[39m: Server started
+19:27:58 [32minfo[39m: Connected to Database
+19:27:58 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:29:44 [32minfo[39m: Server started
+19:29:44 [32minfo[39m: Connected to Database
+19:29:44 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:30:30 [32minfo[39m: Server started
+19:30:30 [32minfo[39m: Connected to Database
+19:30:30 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:45:33 [32minfo[39m: Server started
+19:45:34 [32minfo[39m: Connected to Database
+19:45:34 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:50:44 [32minfo[39m: Server started
+19:50:44 [32minfo[39m: Connected to Database
+19:50:44 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark

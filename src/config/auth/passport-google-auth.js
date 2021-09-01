@@ -8,7 +8,7 @@ passport.use('google',new GoogleStrategy({
     clientSecret: process.env.googleClientSecret,
     callbackURL: process.env.googleCallback
   },
- async function(accessToken, refreshToken, profile, done) {
+ async (accessToken, refreshToken, profile, done)=> {
     try {
       let user= await User.findOne({email:profile._json.email});
       if(user){
@@ -36,9 +36,9 @@ passport.use('google',new GoogleStrategy({
 
 
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done)=> {
     done(null, user)
 })
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser((obj, done)=> {
     done(null, obj)
 })

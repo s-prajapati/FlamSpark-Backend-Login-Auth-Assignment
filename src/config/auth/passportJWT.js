@@ -9,11 +9,11 @@ const {User}=require('../../models');
 
 const logger=require('../../logger')
 
-passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+passport.use(new JwtStrategy(opts, (jwt_payload, done)=> {
    // called everytime a protected URL is being served
    // payload has the email  not the id
 
-   User.findOne({email: jwt_payload.data}, function(err, user) {
+   User.findOne({email: jwt_payload.data}, (err, user)=> {
     if (err) {
         return done(err, false);
     }
