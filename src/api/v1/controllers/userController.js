@@ -23,7 +23,7 @@ module.exports.registerUser = async (req,res) => {
             to: req.body.email,
             subject: "Please confirm your Email",
             html: `<h1>Email Confirmation</h1>
-                      <h2>Hello ${req.body.name}</h2>
+                      <h2>Hello ${req.body.name[0]}  ${req.body.name[1]}</h2>
                       <br>
                       <h3>We welcome you as a part of our <b>FlameSpark</b> family.</h3>
                       <p>Kindly click on the link below to confirm your e-mail address.</p>
@@ -139,6 +139,32 @@ module.exports.loginUser = async (req,res) => {
             message: "User loggedIn successfully",
             data: {
                 user: user,
+                token: token,
+            },
+            success: true,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "something went wrong",
+            success: false,
+        });
+    }
+};
+
+module.exports.googleCallback = async function (req, res) {
+    try {
+        
+        let token = jwt.sign(
+            {
+                data: req.user.email,
+            },
+            process.env.JWTsecret,
+            { expiresIn: "1h" }
+        );
+        return res.status(200).json({
+            message: "user loggedin",
+            data: {
+                user: req.user,
                 token: token,
             },
             success: true,
