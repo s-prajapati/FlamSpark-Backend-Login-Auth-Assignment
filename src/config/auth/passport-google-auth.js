@@ -1,6 +1,7 @@
 const passport=require('passport');
 const GoogleStrategy=require('passport-google-oauth').OAuth2Strategy;
 const {User}=require('../../models')
+const logger=require('../../logger')
 
 passport.use('google',new GoogleStrategy({
     clientID: process.env.googleClientId,
@@ -24,7 +25,7 @@ passport.use('google',new GoogleStrategy({
 
 
     } catch (error) {
-      console.log(error)
+      logger.error(error)
       // return res.status(400).json({
       //   message:"something went wrong",
       //   success:false

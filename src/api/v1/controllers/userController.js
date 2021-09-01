@@ -29,7 +29,7 @@ module.exports.registerUser = async (req,res) => {
                       <p>Kindly click on the link below to confirm your e-mail address.</p>
                       <a href='${process.env.siteURI}/api/v1/user/confirmEmail/${confirmationCode}'><h3> Click here</h3></a>
                       <p style = "color : rbg(150, 148, 137)">Please do not reply to this e-mail. This address is automated and cannot help with questions or requests.</p>
-                      <h4>If you have questions please write to abcd@FlameSpark.com. You may also call us at <a href="tel:7510545225">7510545225</a></h4>
+                      <h4>If you have questions please write to abcd@FlameSpark.com. You may also call us at <a href="tel:123456">123456</a></h4>
                       </div>`,
         });
 
@@ -151,7 +151,7 @@ module.exports.loginUser = async (req,res) => {
     }
 };
 
-module.exports.googleCallback = async function (req, res) {
+module.exports.googleCallback = async (req, res)=> {
     try {
         
         let token = jwt.sign(
@@ -176,3 +176,81 @@ module.exports.googleCallback = async function (req, res) {
         });
     }
 };
+
+module.exports.resetPassword = async (req, res)=> {
+
+    try {
+        
+        let user = await User.findOne({ randString: req.params.id });
+        if (!user) {
+          return res.status(400).json({
+              message:"Bad Request",
+              success:false
+          });
+        } else {
+          const hash=await bcrypt.hash(req.body.password,10);
+          user.password=hash;
+          await user.save();
+          return res.status(200).json({
+              message:"Password updated.Please login using new password",
+              success:true
+          })
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: "something went wrong",
+            success: false,
+        });
+    }
+   
+  
+}
+
+
+
+  
+module.exports.forgotPassword = async (req, res)=> {
+    try {
+        const email = req.body.email
+    let user = await User.findOne({ email });
+    const confirmationCode = randString();
+  
+    if (user) {
+  
+      user.randString = confirmationCode;
+      await user.save();
+     
+  
+        transporter.sendMail({
+          from: process.env.email,
+          to: req.body.email,
+          subject: "Reset Password",
+          html: `<h1>Reset Password</h1>
+                  <h2>Hello ${user.name}</h2>
+                  <br>
+                  <p>Kindly click on the link below to reset your password.</p>
+                  <a href=${process.env.siteURI}/api/v1/user/resetPassword/${confirmationCode}> Click here</a>
+                  <p style = "color : rbg(150, 148, 137)">Please do not reply to this e-mail. This address is automated and cannot help with questions or requests.</p>
+                  <h4>If you have questions please write to abcd@flamespark.com. You may also call us at <a href="tel:123456">123456</a></h4>
+              </div>`,
+        });
+        return res.status(200).json({
+            message:"Please check your mail to reset password",
+            success:true
+        })
+      
+    }
+    else {
+      return res.status(400).json({
+          message:"Email is not registered",
+          success:true
+      })
+    }
+    } catch (error) {
+        res.status(500).json({
+            message: "something went wrong",
+            success: false,
+        });
+    }
+    
+  }
