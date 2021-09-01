@@ -1,4 +1,4 @@
-const {User}= require('../../../models');
+const { User } = require('../../../models');
 const randString = require('../../../config/randString');
 const jwt = require("jsonwebtoken");
 const logger = require("../../../logger");
@@ -6,10 +6,10 @@ const bcrypt = require("bcrypt");
 const transporter = require("../../../config/nodemailer");
 
 
-module.exports.registerUser = async (req,res) => {
+module.exports.registerUser = async (req, res) => {
     try
     {
-        let user = await User.findOne({email: req.body.email});
+        let user = await User.findOne({ email: req.body.email });
         if(user){
             return res.status(400).json({
                 message:'User already exists',
@@ -62,6 +62,7 @@ module.exports.registerUser = async (req,res) => {
         });
     }
     catch(err){
+        logger.error(err);
         res.status(500).json({
             message: "something went wrong",
             success: false,
@@ -69,47 +70,47 @@ module.exports.registerUser = async (req,res) => {
     }
 };
 
-module.exports.confirmEmail =async (req,res)=>{
-    const secret = req.params.secret
-    const user = await User.findOne({ randString: secret })
+module.exports.confirmEmail = async (req, res)=>{
+    const secret = req.params.secret;
+    const user = await User.findOne({ randString: secret });
     try {
-      if (user) {
-        user.isVerified = true;
-        user.randString = null;
-        await user.save();
-        let token = jwt.sign(
-          {
-              data: user,
-          },
-          process.env.JWTsecret,
-          { expiresIn: "1h" }
-      );
+        if (user) {
+            user.isVerified = true;
+            user.randString = null;
+            await user.save();
+            let token = jwt.sign(
+                {
+                    data: user,
+                },
+                process.env.JWTsecret,
+                { expiresIn: "1h" }
+            );
        
-       return res.status(200).json({
-           message:"Email verified.Welcome to FlameSpark",
-           data:{
-               user:user,
-               token:token,
-               success:true
-           }
-       })
+            return res.status(200).json({
+                message:"Email verified.Welcome to FlameSpark",
+                data:{
+                    user:user,
+                    token:token,
+                    success:true
+                }
+            });
   
-      }else{
-          return res.status(400).json({
-              message:"Bad request",
-              success:false
-          })
-      }
+        }else{
+            return res.status(400).json({
+                message:"Bad request",
+                success:false
+            });
+        }
     }
     catch (err) {
-      res.status(500).json({
-          message: "something went wrong",
-          success: false,
-      });
+        res.status(500).json({
+            message: "something went wrong",
+            success: false,
+        });
     }
-  };
+};
 
-module.exports.loginUser = async (req,res) => {
+module.exports.loginUser = async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email });
 
@@ -125,7 +126,7 @@ module.exports.loginUser = async (req,res) => {
             return res.status(200).json({
                 message:"Please verify your email first",
                 success:false
-            })
+            });
         }
 
         let token = jwt.sign(
@@ -183,18 +184,18 @@ module.exports.resetPassword = async (req, res)=> {
         
         let user = await User.findOne({ randString: req.params.id });
         if (!user) {
-          return res.status(400).json({
-              message:"Bad Request",
-              success:false
-          });
+            return res.status(400).json({
+                message:"Bad Request",
+                success:false
+            });
         } else {
-          const hash=await bcrypt.hash(req.body.password,10);
-          user.password=hash;
-          await user.save();
-          return res.status(200).json({
-              message:"Password updated.Please login using new password",
-              success:true
-          })
+            const hash = await bcrypt.hash(req.body.password, 10);
+            user.password = hash;
+            await user.save();
+            return res.status(200).json({
+                message:"Password updated.Please login using new password",
+                success:true
+            });
         }
     } catch (error) {
         res.status(500).json({
@@ -204,28 +205,28 @@ module.exports.resetPassword = async (req, res)=> {
     }
    
   
-}
+};
 
 
 
   
 module.exports.forgotPassword = async (req, res)=> {
     try {
-        const email = req.body.email
-    let user = await User.findOne({ email });
-    const confirmationCode = randString();
+        const email = req.body.email;
+        let user = await User.findOne({ email });
+        const confirmationCode = randString();
   
-    if (user) {
+        if (user) {
   
-      user.randString = confirmationCode;
-      await user.save();
+            user.randString = confirmationCode;
+            await user.save();
      
   
-        transporter.sendMail({
-          from: process.env.email,
-          to: req.body.email,
-          subject: "Reset Password",
-          html: `<h1>Reset Password</h1>
+            transporter.sendMail({
+                from: process.env.email,
+                to: req.body.email,
+                subject: "Reset Password",
+                html: `<h1>Reset Password</h1>
                   <h2>Hello ${user.name}</h2>
                   <br>
                   <p>Kindly click on the link below to reset your password.</p>
@@ -233,19 +234,19 @@ module.exports.forgotPassword = async (req, res)=> {
                   <p style = "color : rbg(150, 148, 137)">Please do not reply to this e-mail. This address is automated and cannot help with questions or requests.</p>
                   <h4>If you have questions please write to abcd@flamespark.com. You may also call us at <a href="tel:123456">123456</a></h4>
               </div>`,
-        });
-        return res.status(200).json({
-            message:"Please check your mail to reset password",
-            success:true
-        })
+            });
+            return res.status(200).json({
+                message:"Please check your mail to reset password",
+                success:true
+            });
       
-    }
-    else {
-      return res.status(400).json({
-          message:"Email is not registered",
-          success:true
-      })
-    }
+        }
+        else {
+            return res.status(400).json({
+                message:"Email is not registered",
+                success:true
+            });
+        }
     } catch (error) {
         res.status(500).json({
             message: "something went wrong",
@@ -253,4 +254,4 @@ module.exports.forgotPassword = async (req, res)=> {
         });
     }
     
-  }
+};

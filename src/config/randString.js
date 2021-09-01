@@ -1,4 +1,4 @@
-const randString=()=>{
+const randString = ()=>{
     var pass = '';
     var str = 'PQRSTUVWXIJKLMNO' + 
             'abcdmnopqrsefghijkltuvwxyz01234YZABCDEFGH56789@$';
@@ -7,9 +7,9 @@ const randString=()=>{
         var char = Math.floor(Math.random()
                     * str.length + 1);
           
-        pass += str.charAt(char)
+        pass += str.charAt(char);
     }
       
     return pass;
-}
-module.exports=randString;
+};
+module.exports = randString;

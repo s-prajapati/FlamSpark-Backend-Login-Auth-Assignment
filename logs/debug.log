@@ -172,3 +172,45 @@
 19:50:44 [32minfo[39m: Server started
 19:50:44 [32minfo[39m: Connected to Database
 19:50:44 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+19:50:52 [32minfo[39m: Server started
+19:50:52 [32minfo[39m: Connected to Database
+19:50:52 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:30:07 [32minfo[39m: Server started
+20:30:07 [32minfo[39m: Connected to Database
+20:30:07 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:30:26 [31merror[39m: Cannot read property '0' of undefined
+20:30:44 [32minfo[39m: Server started
+20:30:44 [32minfo[39m: Connected to Database
+20:30:44 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:32:26 [32minfo[39m: Server started
+20:32:26 [32minfo[39m: Connected to Database
+20:32:26 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:33:25 [32minfo[39m: Server started
+20:33:25 [32minfo[39m: Connected to Database
+20:33:25 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:33:43 [31merror[39m: User validation failed: name: Path `name` is required.
+20:34:24 [31merror[39m: User validation failed: name: Path `name` is required.
+20:35:42 [31merror[39m: User validation failed: name: Path `name` is required.
+20:36:33 [32minfo[39m: Server started
+20:36:33 [32minfo[39m: Connected to Database
+20:36:33 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:36:46 [32minfo[39m: Server started
+20:36:46 [32minfo[39m: Connected to Database
+20:36:46 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:37:41 [32minfo[39m: Server started
+20:37:41 [32minfo[39m: Connected to Database
+20:37:41 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+20:37:47 [31merror[39m: Cannot read property '0' of undefined
+20:55:08 [31merror[39m: Cannot read property '0' of undefined
+22:07:18 [32minfo[39m: Server started
+22:07:18 [32minfo[39m: Connected to Database
+22:07:18 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+22:08:17 [32minfo[39m: Server started
+22:08:17 [32minfo[39m: Connected to Database
+22:08:17 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+22:10:15 [32minfo[39m: Server started
+22:10:15 [32minfo[39m: Connected to Database
+22:10:15 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+22:10:36 [32minfo[39m: Server started
+22:10:36 [32minfo[39m: Connected to Database
+22:10:36 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
