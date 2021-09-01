@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const transporter = require("../../../config/nodemailer");
 
 
-module.exports.registerUser = async (req,res,next) => {
+module.exports.registerUser = async (req,res) => {
     try
     {
         let user = await User.findOne({email: req.body.email});
@@ -107,4 +107,46 @@ module.exports.confirmEmail =async (req,res)=>{
           success: false,
       });
     }
-  }
+  };
+
+module.exports.loginUser = async (req,res) => {
+    try {
+        let user = await User.findOne({ email: req.body.email });
+
+        if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
+            return res.status(400).json({
+                message: "invalid email or password",
+                success: false,
+            });
+        
+        }
+
+        if(!user.isVerified){
+            return res.status(200).json({
+                message:"Please verify your email first",
+                success:false
+            })
+        }
+
+        let token = jwt.sign(
+            {
+                data: user.email,
+            },
+            process.env.JWTsecret,
+            { expiresIn: "1h" }
+        );
+        res.status(200).json({
+            message: "User loggedIn successfully",
+            data: {
+                user: user,
+                token: token,
+            },
+            success: true,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "something went wrong",
+            success: false,
+        });
+    }
+};
