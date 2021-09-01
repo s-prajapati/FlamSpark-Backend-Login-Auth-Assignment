@@ -1,0 +1,29 @@
+12:13:14 [32minfo[39m: Server started
+12:41:18 [32minfo[39m: Server started
+12:43:15 [32minfo[39m: Server started
+12:43:15 [31merror[39m: Mongoose connection error: MongoParseError: options usecreateindex, usefindandmodify are not supported
+12:43:15 [32minfo[39m: Error connecting to Database
+12:44:07 [32minfo[39m: Server started
+12:44:07 [31merror[39m: Mongoose connection error: MongoParseError: options usecreateindex, usefindandmodify are not supported
+12:44:07 [32minfo[39m: Error connecting to Database
+12:48:27 [32minfo[39m: Server started
+12:48:27 [31merror[39m: Mongoose connection error: MongoParseError: options usecreateindex, usefindandmodify are not supported
+12:48:27 [32minfo[39m: Error connecting to Database
+12:50:45 [32minfo[39m: Server started
+12:50:45 [32minfo[39m: Connected to Database
+12:50:45 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+12:52:25 [32minfo[39m: Server started
+12:52:27 [32minfo[39m: Connected to Database
+12:52:27 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+12:52:49 [32minfo[39m: Server started
+12:52:49 [32minfo[39m: Connected to Database
+12:52:49 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+13:01:30 [32minfo[39m: Server started
+13:01:31 [32minfo[39m: Connected to Database
+13:01:31 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+13:01:51 [32minfo[39m: Server started
+13:01:51 [32minfo[39m: Connected to Database
+13:01:51 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark
+13:02:34 [32minfo[39m: Server started
+13:02:34 [32minfo[39m: Connected to Database
+13:02:34 [32minfo[39m: Mongoose connected to mongodb://localhost:27017/flame-spark

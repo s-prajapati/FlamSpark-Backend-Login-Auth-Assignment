@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-
 const logger = require('./logger');
+const db = require('./config/mongoose')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
